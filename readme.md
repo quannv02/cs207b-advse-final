@@ -5,7 +5,7 @@ Basically everyone should work on there own branch and when they want to merge t
 
 # 2nd setup environment:
 
-I recommend everyone use anaconda, conda for sort to setup the enviroment
+I recommend everyone use anaconda, conda for sort to setup the environment
 the python version for this system is `python3.9` for the UI, you can use any free-to-use library (for commercial or not)
   
 All the requirement package are in the `requirement.txt` file  
