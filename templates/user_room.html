@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Room {{ room.number }}{% endblock %}
+{% block content %}
+
+    <h1>Room {{ room.number }}</h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200">
+                </td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td>${{ room.price }}</td>
+            </tr>
+            <tr>
+                <td>Floor:</td>
+                <td>{{ room.floor }}</td>
+            </tr>
+            <tr>
+                <td>Capacity:</td>
+                <td>{{ room.capacity }}</td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>{{ room.description }}</td>
+            </tr>
+            <tr>
+                <td>Available:</td>
+                <td>{{ "Yes" if room.available else "No" }}</td>
+            </tr>
+            <tr>
+                <td>Average Rating:</td>
+                <td>{{ room.average_rating }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+    <form action="{{ url_for('user_route.reserve', room_id=room.id) }}" method="POST">
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" class="form-control" id="start_date" required>
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" class="form-control" id="end_date" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" onclick="{{ url_for('user_route.reserve', room_id=room.id) }}">Book</button>
+    </form>
+
+    <h2>Reviews</h2>
+    <div class="">
+    {% for review in reviews %}
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ review.name }}</h5>
+                <h6 class="card-subtitle mb-2">{{ review.rating }}</h6>
+                <p class="card-text">{{ review.comment }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    <form action="{{ url_for('user_route.add_review_route', room_id=room.id) }}" method="POST">
+        <div class="form-group">
+            <label for="rating">Rating:</label>
+            <select name="rating" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="comment">Comment:</label>
+            <input type="text" name="comment" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add Review
+        </button>
+    </form>
+    
+<{% endblock %}

@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Page{% endblock %}
+
+{% block content %}
+
+<!-- render every user -->
+<h1>modify users</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>phone</th>
+            <th>email</th>
+            <th>role</th>
+            <!-- <th>remove</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.friendly_name }}</td>
+            <td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
+            <td>{{ user.phone_number }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ "admin" if user.is_admin else "staff" if user.is_staff else "user" }}</td>
+            <!-- <td><a href="/remove_users/{{ user.id }}">X</a></td> -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>modify Rooms</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Floor</th>
+            <th>Capacity</th>
+            <th>description</th>
+            <th>available</th>
+            <th>average_rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for room in rooms %}
+        <tr>
+            <td><a href="{{ url_for('admin_route.modify_room_route', room_id=room.id) }}">{{ room.room_number }}</a></td>
+            <td>${{ room.price }}</td>
+            <td><img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200"></td>
+            <td>{{ room.floor }}</td>
+            <td>{{ room.capacity }}</td>
+            <td>{{ room.description }}</td>
+            <td>{{ "Yes" if room.available else "No" }}</td>
+            <td>{{ room.average_rating }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Add Rooms</h1>
+
+<form action="/add_room" method="POST">
+    <div class="form-group">
+        <label for="room_number">Room Number:</label>
+        <input type="text" name="room_number" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="price">Price:</label>
+        <input type="number" name="price" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="image">Image:</label>
+        <input type="text" name="image" class="form-control" value="1.jpg">
+    </div>
+    <div class="form-group">
+        <label for="floor">Floor:</label>
+        <input type="number" name="floor" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="capacity">Capacity:</label>
+        <input type="number" name="capacity" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="description">Description:</label>
+        <input type="text" name="description" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="available">Available:</label>
+        <select name="available" class="form-control">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="average_rating">Average Rating:</label>
+        <input type="number" name="average_rating" class="form-control" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Add Room</button>
+</form>
+
+{% endblock %}

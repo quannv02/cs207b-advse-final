@@ -22,15 +22,31 @@ class Room(Base):
     id = Column(Integer, primary_key=True)
     room_number = Column(String(50), nullable=False)
     price = Column(Float, nullable=False)
+    floor = Column(String(10), nullable=False)
+    capacity = Column(Integer, nullable=False, default=1)
+    image = Column(String(50), nullable=False)
+    description = Column(String(1000), nullable=False)
+    available = Column(Integer, nullable=False, default=1) # 0 = not available, 1 = available
+    average_rating = Column(Float, nullable=False, default=0)
 
 class Reservation(Base):
     __tablename__ = 'reservations'
     id = Column(Integer, primary_key=True)
+    room_id = Column(Integer, ForeignKey('rooms.id'), nullable=False)
+    guest_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     start_date = Column(DateTime, nullable=False, default=datetime.utcnow)
     end_date = Column(DateTime, nullable=False)
-    guest_name = Column(String(50), nullable=False)
-    room_id = Column(Integer, ForeignKey('rooms.id'), nullable=False)
     room = relationship('Room', backref='reservations')
+
+class Review(Base):
+    __tablename__ = 'reviews'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    room_id = Column(Integer, ForeignKey('rooms.id'), nullable=False)
+    comment = Column(String(1000), nullable=False)
+    rating = Column(Integer, nullable=False) # 1-5
+    show = Column(Integer, nullable=False, default=0) # 0 = hidden, 1 = visible
+    room = relationship('Room', backref='reviews')
 
 engine = create_engine('sqlite:///hotel.db')
 DBSession = sessionmaker(bind=engine)

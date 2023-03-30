@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>your reserves</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Floor</th>
+            <th>Capacity</th>
+            <th>check in</th>
+            <th>check out</th>
+            <th></th><!--cancel</th> -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for reservation in reservations %}
+        <tr>
+            <td><a href="{{ url_for('user_route.room', room_id=reservation.room_id) }}">{{ reservation.room_number }}</a></td>
+            <td>${{ reservation.price }}</td>
+            <td><img src="{{ url_for('static', filename='images/' + reservation.image) }}" alt="room image" width="200" height="200"></td>
+            <td>{{ reservation.floor }}</td>
+            <td>{{ reservation.capacity }}</td>
+            <td>{{ reservation.start_date }}</td>
+            <td>{{ reservation.end_date }}</td>
+            <td><a href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}">cancel</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    
+{% endblock %}

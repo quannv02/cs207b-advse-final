@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Modify User{% endblock %}
+
+{% block content %}
+
+<h1>Modify User</h1>
+
+<!-- modify form request over post-->
+
+<form method="post" action="{{ url_for('admin_route.modify_user', user_id=user.id) }}">
+
+    <div class="form-group">
+        <label for="friendly_name">Friendly Name</label>
+        <input type="text" class="form-control" id="friendly_name" name="friendly_name" placeholder="Enter Friendly Name" value="{{ user.friendly_name }}">
+    </div>
+
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" value="{{ user.username }}">
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="*****">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" value="{{ user.email }}">
+    </div>
+
+    <div class="form-group">
+        <label for="phone_number">Phone</label>
+        <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter phone" value="{{ user.phone_number }}">
+    </div>
+
+    <div class="form-group">
+        <label for="role">is Staff</label>
+        <select class="form-control" id="is_staff" name="is_staff">
+            <option value="0" {% if user.is_staff == 0 %} selected {% endif %}>No</option>
+            <option value="1" {% if user.is_staff == 1 %} selected {% endif %}>Yes</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Modify User</button>
+    
+</form>
+
+<h1>Danger Zone</h1>
+
+<button onclick="{{ url_for('admin_route.delete_user', user_id=user.id) }}" class="btn btn-danger">Remove User</button>
+
+{% endblock %}

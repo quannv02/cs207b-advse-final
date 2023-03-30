@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- TODO: implement this -->
+<a href="{{ url_for('user_route.reserves')}}">my reservation</a>
+
+<div class="container">
+    <h1>Available Hotel Rooms</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Room Number</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Floor</th>
+                <th>Capacity</th>
+                <th>description</th>
+                <th>available</th>
+                <th>average_rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <td><a href="{{ url_for('user_route.room', room_id=room.id) }}">{{ room.room_number }}</a></td>
+                <td>${{ room.price }}</td>
+                <td><img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200"></td>
+                <td>{{ room.floor }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.description }}</td>
+                <td>{{ "Yes" if room.available else "No" }}</td>
+                <td>{{ room.average_rating }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
