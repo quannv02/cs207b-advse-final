@@ -22,7 +22,8 @@ def index():
                 return render_template('admin.html', users=users ,rooms=rooms)
             
             if session['is_staff']:
-                return render_template('staff.html')
+                rooms = get_all_rooms()
+                return render_template('staff.html',rooms=rooms)
 
             rooms = get_all_rooms()
             return render_template('user.html', rooms=rooms)

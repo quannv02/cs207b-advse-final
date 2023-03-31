@@ -89,12 +89,13 @@ def modify_room_route(room_id):
                 average_rating = request.form['average_rating'] if 'average_rating' in request.form else 5
                 # TODO: boundary check
                 if modify_room(room_id, room_number, price, floor,capacity, image, description, available, average_rating):
-                    return redirect('/', messenger="Room modified successfully")
-                return redirect('/', error="Room does not exist")
+                    return redirect('/')
+                return redirect('/')
             else:
                 room = get_room_by_id(room_id)
                 reservations = get_reservations_by_room_id(room_id)
-                return render_template('admin_staff_modify_room.html', room=room, reservations=reservations)
+                reviews = get_reviews_by_room_id(room_id)
+                return render_template('admin_staff_modify_room.html',reviews=reviews, room=room, reservations=reservations)
 
 @admin_route.route('/delete_room/<int:room_id>', methods=['POST'])
 def delete_room(room_id):

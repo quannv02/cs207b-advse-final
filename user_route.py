@@ -61,7 +61,7 @@ def reserve(room_id):
             start_date = datetime.datetime.strptime(request.form['start_date'], '%Y-%m-%d')
             end_date = datetime.datetime.strptime(request.form['end_date'], '%Y-%m-%d')
             make_reservation(user_id, room_id, start_date, end_date)
-            return redirect(url_for('user_route.room', room_id=room_id))
+            return redirect(url_for('user_route.reserves', room_id=room_id))
 
 
 @user_route.route('/add_review_route/<int:room_id>', methods=['POST'])
@@ -71,7 +71,10 @@ def add_review_route(room_id):
             return redirect(url_for('authenticate_route.login'))
         else:
             user_id = session['id']
-            rating = request.form['rating']
+            rating = request.form['rating'] if 'rating' in request.form else '999'
             comment = request.form['comment']
             add_review(room_id,user_id, comment, rating)
-            return redirect(url_for('user_route.room', room_id=room_id, message="Review added successfully"))
+            if session['is_admin'] or session['is_staff']:
+                return redirect(url_for('admin_route.modify_room', room_id=room_id, message="Review added successfully"))
+            else:
+                return redirect(url_for('user_route.room', room_id=room_id, message="Review added successfully"))

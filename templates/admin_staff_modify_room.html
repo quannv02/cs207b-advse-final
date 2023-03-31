@@ -8,7 +8,7 @@
 
 <h2>Reservations</h2>
 
-<table>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Guest Name</th>
@@ -26,6 +26,33 @@
         {% endfor %}
     </tbody>
 </table>
+
+
+<h2>Reviews</h2>
+<div class="">
+{% for review in reviews %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ review.name }}</h5>
+            {% if review.rating < 10 %}
+                <h6 class="card-subtitle mb-2">{{ review.rating }}</h6>
+            {% endif %}
+            <p class="card-text">{{ review.comment }}</p>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+<form action="{{ url_for('user_route.add_review_route', room_id=room.id) }}" method="POST">
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <input type="text" name="comment" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add Review
+    </button>
+</form>
 
 <form method="post" action="{{ url_for('admin_route.modify_room_route', room_id=room.id) }}">
     <div class="form-group">
@@ -74,8 +101,10 @@
     <button type="submit" class="btn btn-primary">Modify Room</button>
 </form>
 
+{% if session['is_admin'] %}
 <h1>Danger Zone</h1>
 
 <button onclick="" class="btn btn-danger">Remove room</button>
+{% endif %}
 
 {% endblock %}

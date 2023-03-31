@@ -56,7 +56,9 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ review.name }}</h5>
-                <h6 class="card-subtitle mb-2">{{ review.rating }}</h6>
+                {% if review.rating < 10 %}
+                    <h6 class="card-subtitle mb-2">{{ review.rating }}</h6>
+                {% endif %}
                 <p class="card-text">{{ review.comment }}</p>
             </div>
         </div>
