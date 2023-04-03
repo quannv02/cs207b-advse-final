@@ -124,7 +124,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: url(../images/login-bg1.jpg);
+  background-image: url(../images/login-bg.jpg);
   background-size: 70%;
   transition: 1.8s ease-in-out;
   border-radius: 50%;
