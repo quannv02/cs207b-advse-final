@@ -118,7 +118,11 @@ def get_reservations_by_guest_id(guest_id):
     for reservation in reservations_raw:
         room = session.query(Room).get(reservation.room_id)
         reservation.room_number = room.room_number
-        reservation.price = room.price
+        reservation.check_in = reservation.start_date.strftime("%d-%m-%Y")
+        reservation.check_out = reservation.end_date.strftime("%d-%m-%Y")
+        reservation.day_stay = reservation.end_date - reservation.start_date
+        reservation.base_price = room.price
+        reservation.price = room.price * reservation.day_stay.days
         reservation.floor = room.floor
         reservation.capacity = room.capacity
         reservation.image = room.image

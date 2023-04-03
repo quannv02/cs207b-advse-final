@@ -13,6 +13,7 @@
             <th>Capacity</th>
             <th>check in</th>
             <th>check out</th>
+            <th>status</th>
             <th></th><!--cancel</th> -->
         </tr>
     </thead>
@@ -26,10 +27,19 @@
             <td>{{ reservation.capacity }}</td>
             <td>{{ reservation.start_date }}</td>
             <td>{{ reservation.end_date }}</td>
+            <!--  # 0 = pending, 1 = payed, not comfirm , 2 = confirmed, 3 = cancelled -->
+            <td>{{ "not payed" if reservation.status == 0 else "payed, wait for confirmation" if reservation.status == 1 else "confirmed" if reservation.status == 2 else "cancelled" }}</td>
             <td><a href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}">cancel</a></td>
         </tr>
         {% endfor %}
     </tbody>
+
 </table>
+{%if request_pay%}
+
+<h2>you have a reservation to <a href="{{ url_for('user_route.payment') }}">pay</a>    </h2>
+
+{%endif%}
+
     
 {% endblock %}
