@@ -2,107 +2,252 @@
 
 {% block title %}Admin Page{% endblock %}
 
-{% block content %}
+{% block header %}
+<header class="site-header js-site-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="admin.html">Press Hotel</a></div>
+      <div class="col-6 col-lg-8">
+        <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- END menu-toggle -->
 
+        <div class="site-navbar js-site-navbar">
+          <nav role="navigation">
+            <div class="container">
+              <div class="row full-height align-items-center">
+                <div class="col-md-6 mx-auto">
+                  <ul class="list-unstyled menu">
+                    <li class="active"><a href="admin.html">Home</a></li>
+                    <li><a class="smoothscroll" href="#add-room">Add Room</a></li>
+                    <li><a class="smoothscroll" href="#modify-users">Modify Users</a></li>
+                    <li><a class="smoothscroll" href="#modify-rooms">Modify Rooms</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- END navbar -->
+      </div>
+    </div>
+  </div>
+</header>
+<!-- END head -->
+
+<section class="site-hero overlay" style="background-image: url({{ url_for('static', filename='images/hero_4.jpg') }})" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row site-hero-inner justify-content-center align-items-center">
+      <div class="col-md-10 text-center" data-aos="fade-up">
+        <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span>   Hotel</span>
+        <h1 class="heading">A Best Place To Stay</h1>
+      </div>
+    </div>
+  </div>
+
+  <a class="mouse smoothscroll" href="#next">
+    <div class="mouse-icon">
+      <span class="mouse-wheel"></span>
+    </div>
+  </a>
+</section>
+<!-- END section -->
+{% endblock %}
+
+{% block body %}
+<section class="section bg-light pb-0"  id="add-room">
+  <div class="container">
+    <div class="row check-availabilty" id="next">
+      <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+
+        <form action="/add_room" method="POST">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="room_number">Room Number</label>
+                  <input type="text" name="room_number" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="price">Price</label>
+                  <input type="number" name="price" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="image">Image</label>
+                  <input type="text" name="image" class="form-control" value="1.jpg">
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="floor">Floor</label>
+                  <input type="number" name="floor" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="capacity">Capacity</label>
+                  <input type="number" name="capacity" class="form-control" required>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="description">Description</label>
+                  <input type="text" name="description" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="available">Available</label>
+                  <select name="available" class="form-control">
+                      <option value="1">Yes</option>
+                      <option value="0">No</option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="form-group">
+                  <label for="average_rating">Average Rating</label>
+                  <input type="number" name="average_rating" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block text-white">Add Room</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- END section -->
+
+<section class="py-5 bg-light" id="modify-users">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Modify Users</h2>
+      </div>
+    </div>
+
+    <table class="table table-striped" data-aos="fade-up">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Role</th>
+                <!-- <th>remove</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.friendly_name }}</td>
+                <td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
+                <td>{{ user.phone_number }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ "admin" if user.is_admin else "staff" if user.is_staff else "user" }}</td>
+                <!-- <td><a href="/remove_users/{{ user.id }}">X</a></td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+</section>
+<!-- END section -->
+
+<section class="section" id="modify-rooms">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Modify Rooms</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center" data-aos="fade-up">
+      {% for room in rooms %}
+      <div class="col-md-6">
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="100%">
+          <div class="card-body">
+            <div class="row p-2">
+              <div class="col-sm-6">
+                <h6>Room Number</h6>
+                <p>{{ room.room_number }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Price</h6>
+                <p>${{ room.price }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Floor</h6>
+                <p>{{ room.floor }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Capacity</h6>
+                <p>{{ room.capacity }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Available</h6>
+                <p>{{ "Yes" if room.available else "No" }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Average Rating</h6>
+                <p>{{ room.average_rating }}</p>
+              </div>
+              <div class="col-sm-12">
+                <h6>Description</h6>
+                <p>{{ room.description }}</p>
+              </div>
+            </div>
+            <a href="{{ url_for('admin_route.modify_room_route', room_id=room.id) }}"><button class="btn btn-primary btn-block text-white">Modify</button></a>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- END section -->
 <!-- render every user -->
-<h1>modify users</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>phone</th>
-            <th>email</th>
-            <th>role</th>
-            <!-- <th>remove</th> -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in users %}
-        <tr>
-            <td>{{ user.friendly_name }}</td>
-            <td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
-            <td>{{ user.phone_number }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ "admin" if user.is_admin else "staff" if user.is_staff else "user" }}</td>
-            <!-- <td><a href="/remove_users/{{ user.id }}">X</a></td> -->
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
 
 
-<h1>modify Rooms</h1>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Room Number</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Floor</th>
-            <th>Capacity</th>
-            <th>description</th>
-            <th>available</th>
-            <th>average_rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for room in rooms %}
-        <tr>
-            <td><a href="{{ url_for('admin_route.modify_room_route', room_id=room.id) }}">{{ room.room_number }}</a></td>
-            <td>${{ room.price }}</td>
-            <td><img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200"></td>
-            <td>{{ room.floor }}</td>
-            <td>{{ room.capacity }}</td>
-            <td>{{ room.description }}</td>
-            <td>{{ "Yes" if room.available else "No" }}</td>
-            <td>{{ room.average_rating }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+{% endblock %}
 
-<h1>Add Rooms</h1>
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
 
-<form action="/add_room" method="POST">
-    <div class="form-group">
-        <label for="room_number">Room Number:</label>
-        <input type="text" name="room_number" class="form-control" required>
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
     </div>
-    <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="number" name="price" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="image">Image:</label>
-        <input type="text" name="image" class="form-control" value="1.jpg">
-    </div>
-    <div class="form-group">
-        <label for="floor">Floor:</label>
-        <input type="number" name="floor" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="capacity">Capacity:</label>
-        <input type="number" name="capacity" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="description">Description:</label>
-        <input type="text" name="description" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <label for="available">Available:</label>
-        <select name="available" class="form-control">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="average_rating">Average Rating:</label>
-        <input type="number" name="average_rating" class="form-control" required>
-    </div>
-    
-    <button type="submit" class="btn btn-primary">Add Room</button>
-</form>
-
+  </div>
+</footer>
 {% endblock %}
