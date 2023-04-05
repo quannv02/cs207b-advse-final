@@ -10,7 +10,6 @@
 <body>
   {% if session.get('logged_in') %}
   <h1>Welcome {{session.get('friendly_name')}}</h1>
-  <a href="/logout">Logout</a>
   {% endif %}
 
 

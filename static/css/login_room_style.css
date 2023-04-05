@@ -3,6 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Playfair Display", times, serif; }
 }
 
 .cont {
@@ -104,7 +105,7 @@ form.sign-in-form {
 }
 
 .btn-login:hover {
-  background-color: #FF9271;
+  background-color: #ffba5a;
 }
 .panels-container {
   position: absolute;
@@ -372,7 +373,7 @@ img.user-room{
 }
 
 .btn-book:hover {
-  background-color: #FF9271;
+  background-color: #ffba5a;
 }
 
 .not-avail{
@@ -385,6 +386,10 @@ img.user-room{
   color: #fff;
   margin: 10px 0;
   text-align: center;
+}
+
+.not-avail p{
+  margin-top: 0.7rem!important;
 }
 
 .select-option .opts, select.opts{
@@ -534,3 +539,29 @@ img.user-room{
 }
 
 /*---------end-reviews---------------*/
+
+.site-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 0;
+    z-index: 2;
+    -webkit-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out;
+    background-color: black;
+}
+
+.site-logo {
+  padding-left: 40px; }
+  .site-logo a {
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    line-height: 1;
+    font-family: "Playfair Display", times, serif; }
+    @media (max-width: 991.98px) {
+      .site-logo a {
+        font-size: 15px; } }
+
+/*---------end-header---------------*/
