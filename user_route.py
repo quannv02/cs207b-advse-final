@@ -4,6 +4,17 @@ from app import app
 
 user_route = Blueprint('user_route', __name__)
 
+@user_route.route('/user', methods=['GET'])
+def user():
+    with app.app_context():
+        if not session.get('logged_in'):
+            return redirect(url_for('authenticate_route.login'))
+        else:
+            user_id = session['id']
+            message = request.args.get('message')
+            error = request.args.get('error')
+            return render_template('user.html',  message=message, error=error)
+
 
 @user_route.route('/room/<int:room_id>', methods=['GET'])
 def room(room_id):
