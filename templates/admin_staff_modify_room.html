@@ -6,7 +6,7 @@
 <header class="site-header js-site-header">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="admin.html">Press Hotel</a></div>
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
       <div class="col-6 col-lg-8">
         <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
           <span></span>
@@ -21,7 +21,7 @@
               <div class="row full-height align-items-center">
                 <div class="col-md-6 mx-auto">
                   <ul class="list-unstyled menu">
-                    <li><a href="admin.html">Home</a></li>
+                    <li><a href="#" onclick="history.back()">Home</a></li>
                     <li><a href="/logout">Logout</a></li>
                   </ul>
                 </div>
@@ -143,33 +143,52 @@
 </section>
 <!-- END section -->
 
-
-
-<h2>Reviews</h2>
-<div class="">
-{% for review in reviews %}
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">{{ review.name }}</h5>
-            {% if review.rating < 10 %}
-                <h6 class="card-subtitle mb-2">{{ review.rating }}</h6>
-            {% endif %}
-            <p class="card-text">{{ review.comment }}</p>
+<section class="section">
+  <div class="container">
+    <div class="row  justify-content-centertext-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Review</h2>
+      </div>
+    </div>
+    <div class="row" data-aos="fade-up">
+      {% for review in reviews %}
+      <div class="col-md-12">
+        <div class="d-flex flex-start">
+          <img class="rounded-circle shadow-1-strong me-3"
+            src="{{ url_for('static', filename='images/guest-avatar.jpg') }}" alt="avatar" width="60"
+            height="60" />
+          <div>
+            <h4 class="fw-bold mb-1">{{ review.name }}</h4>
+            <div class="d-flex align-items-center mb-3">
+              <p class="mb-0">
+                April 07, 2023
+                {% if review.rating < 10 %}
+                <span class="badge bg-primary">{{ review.rating }}</span>
+                {% endif %}
+              </p>
+              <a href="#" class=""><i class="fa fa-heart ml-2"></i></a>
+            </div>
+            <p class="mb-0">{{ review.comment }}</p>
+          </div>
         </div>
+        <hr class="my-2" />
+      </div>
+      {% endfor %}
     </div>
-{% endfor %}
-</div>
-
-<form action="{{ url_for('user_route.add_review_route', room_id=room.id) }}" method="POST">
-    <div class="form-group">
-        <label for="comment">Comment:</label>
-        <input type="text" name="comment" class="form-control" required>
+    <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+        <form action="{{ url_for('user_route.add_review_route', room_id=room.id) }}" method="POST">
+            <div class="form-group">
+                <label for="comment">Add a comment as {{ "Admin" if session['is_admin'] else "Staff" if session['is_staff'] else "User" }}</label>
+                <input type="text" name="comment" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block text-white" data-toggle="modal" data-target="#exampleModal">
+                Send
+            </button>
+        </form>
     </div>
+  </div>
+</section>
 
-    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Add Review
-    </button>
-</form>
 
 
 
@@ -187,5 +206,24 @@
 </section>
 {% endif %}
 <!-- END section -->
+{% endblock %}
 
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
+
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
+    </div>
+  </div>
+</footer>
 {% endblock %}
