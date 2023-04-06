@@ -2,38 +2,133 @@
 
 {% block title %}Staff Page{% endblock %}
 
-{% block content %} 
+{% block header %}
+<header class="site-header js-site-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
+      <div class="col-6 col-lg-8">
+        <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- END menu-toggle -->
 
+        <div class="site-navbar js-site-navbar">
+          <nav role="navigation">
+            <div class="container">
+              <div class="row full-height align-items-center">
+                <div class="col-md-6 mx-auto">
+                  <ul class="list-unstyled menu">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a class="smoothscroll" href="#modify-rooms">Modify Rooms</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- END navbar -->
+      </div>
+    </div>
+  </div>
+</header>
+<!-- END head -->
 
-<h1>modify Rooms</h1>
+<section class="site-hero overlay" style="background-image: url({{ url_for('static', filename='images/hero_4.jpg') }})" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row site-hero-inner justify-content-center align-items-center">
+      <div class="col-md-10 text-center" data-aos="fade-up">
+        <span class="custom-caption text-uppercase text-white d-block  mb-3">Welcome To 5 <span class="fa fa-star text-primary"></span>   Hotel</span>
+        <h1 class="heading">A Best Place To Stay</h1>
+      </div>
+    </div>
+  </div>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Room Number</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Floor</th>
-            <th>Capacity</th>
-            <th>description</th>
-            <th>available</th>
-            <th>average_rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for room in rooms %}
-        <tr>
-            <td><a href="{{ url_for('admin_route.modify_room_route', room_id=room.id) }}">{{ room.room_number }}</a></td>
-            <td>${{ room.price }}</td>
-            <td><img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200"></td>
-            <td>{{ room.floor }}</td>
-            <td>{{ room.capacity }}</td>
-            <td>{{ room.description }}</td>
-            <td>{{ "Yes" if room.available else "No" }}</td>
-            <td>{{ room.average_rating }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+  <a class="mouse smoothscroll" href="#modify-rooms">
+    <div class="mouse-icon">
+      <span class="mouse-wheel"></span>
+    </div>
+  </a>
+</section>
+<!-- END section -->
+{% endblock %}
 
+{% block body %}
+<section class="section" id="modify-rooms">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Modify Rooms</h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center" data-aos="fade-up">
+      {% for room in rooms %}
+      <div class="col-md-6">
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="100%">
+          <div class="card-body">
+            <div class="row p-2">
+              <div class="col-sm-6">
+                <h6>Room Number</h6>
+                <p>{{ room.room_number }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Price</h6>
+                <p>${{ room.price }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Floor</h6>
+                <p>{{ room.floor }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Capacity</h6>
+                <p>{{ room.capacity }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Available</h6>
+                <p>{{ "Yes" if room.available else "No" }}</p>
+              </div>
+              <div class="col-sm-6">
+                <h6>Average Rating</h6>
+                <p>{{ room.average_rating }}</p>
+              </div>
+              <div class="col-sm-12">
+                <h6>Description</h6>
+                <p>{{ room.description }}</p>
+              </div>
+            </div>
+            <a href="{{ url_for('admin_route.modify_room_route', room_id=room.id) }}"><button class="btn btn-primary btn-block text-white">Modify</button></a>
+          </div>
+
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- END section -->
+{% endblock %}
+
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
+
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
+    </div>
+  </div>
+</footer>
 {% endblock %}

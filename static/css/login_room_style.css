@@ -337,16 +337,15 @@ form.sign-in-form {
 /*---------------end-login------------------------*/
 
 /*---------user-room---------------*/
-.img-wrap,
-.content-wrap {
+.img-wrap, .content-wrap{
   margin: 0 20px 0 20px;
 }
 
-img.user-room {
+img.user-room{
   border-radius: 5%;
 }
 
-.amenties {
+.amenties{
   background-color: #f7f7f7;
   border-radius: 5%;
   margin: 0;

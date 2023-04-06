@@ -27,6 +27,42 @@ h1, h2, h3, h4, h5 {
   color: #000;
   font-family: "Playfair Display", times, serif; }
 
+table {
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 80px -10px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+@media screen and (max-width: 991.98px) {
+
+  table thead {
+    position: relative;
+  }
+
+}
+
+
+
+table thead {
+  position: sticky;
+}
+
+table thead tr {
+  background: #1a1823;
+}
+
+table thead th {
+  color: #fff;
+  vertical-align: middle !important;
+  border-bottom: 2px solid #ffba5a !important;
+  padding-left: 25px !important;
+}
 .font-family-serif {
   font-family: "Playfair Display", times, serif; }
 
@@ -618,7 +654,9 @@ textarea.form-control {
 
 .footer-section {
   background: #1a1a1a;
-  color: #fff; }
+  color: #fff;
+  padding-block: 50px;
+}
   .footer-section a {
     color: rgba(255, 255, 255, 0.7); }
     .footer-section a:hover {
