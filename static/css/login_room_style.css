@@ -484,6 +484,10 @@ select.opts {
   transition: all ease 0.3s;
 }
 
+.room-price .price{
+  font-size: 30px;
+}
+
 @media (max-width: 1060px) {
   .testimonial-box {
     width: 45%;
@@ -497,6 +501,13 @@ select.opts {
   .testimonial-heading h1 {
     font-size: 1.4rem;
   }
+
+  .room-price {
+    font-size: 20px;
+  }
+  .room-price .price{
+    font-size: 30px;
+  }
 }
 @media (max-width: 340px) {
   .box-top {
@@ -506,6 +517,7 @@ select.opts {
   .reviews {
     margin-top: 10px;
   }
+
 }
 ::selection {
   color: #ffffff;
