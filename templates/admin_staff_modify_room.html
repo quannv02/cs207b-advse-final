@@ -124,7 +124,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Guest Name</th>
+                <th>Guest ID</th>
                 <th>Start Date</th>
                 <th>End Date</th>
             </tr>
@@ -132,9 +132,9 @@
         <tbody>
             {% for reservation in reservations %}
             <tr>
-                <td>{{ reservation.guest_name }}</td>
-                <td>{{ reservation.start_date }}</td>
-                <td>{{ reservation.end_date }}</td>
+                <td>{{ reservation.guest_id }}</td>
+                <td>{{ reservation.start_date.strftime("%d-%m-%Y") }}</td>
+                <td>{{ reservation.end_date.strftime("%d-%m-%Y") }}</td>
             </tr>
             {% endfor %}
         </tbody>
