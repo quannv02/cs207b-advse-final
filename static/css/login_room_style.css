@@ -125,7 +125,7 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
-  background-image: url(../images/login-bg.jpg);
+  background-image: url(../images/hero_4.jpg);
   background-size: 70%;
   transition: 1.8s ease-in-out;
   border-radius: 50%;
@@ -161,7 +161,7 @@ form.sign-in-form {
   font-weight: 650;
   line-height: 1;
   font-size: 1.75rem;
-  color: #ff9271;
+  color: #ca316e;
 }
 
 .panel p {
@@ -299,7 +299,7 @@ form.sign-in-form {
   }
 
   .cont.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
+    transform: translateY(10px);
   }
 
   .right-panel .content {
@@ -325,12 +325,12 @@ form.sign-in-form {
   }
 
   .cont:before {
-    bottom: 62%;
+    bottom: 65%;
     left: 50%;
   }
 
   .cont.sign-up-mode:before {
-    bottom: 30%;
+    bottom: 26%;
     left: 50%;
   }
 }
@@ -406,9 +406,13 @@ select.opts {
 /*---------reviews---------------*/
 
 .room-price {
-  color: #ff9271;
+  color: #ca316e;
 }
 
+.site-menu-toggle {
+    top: 13px;
+    width: 24px;
+  }
 #testimonials {
   display: flex;
   justify-content: center;

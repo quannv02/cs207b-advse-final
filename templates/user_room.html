@@ -7,10 +7,32 @@
 
 <header class="site-header js-site-header">
   <div class="container-fluid">
-    <div class="row align-items-center justify-content-between">
+    <div class="row align-items-center">
       <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
-      <div class="site-logo pr-5" data-aos="fade">
-        <a href="/logout">Logout</a>
+      <div class="col-6 col-lg-8">
+        <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- END menu-toggle -->
+
+        <div class="site-navbar js-site-navbar">
+          <nav role="navigation">
+            <div class="container">
+              <div class="row full-height align-items-center">
+                <div class="col-md-6 mx-auto">
+                  <ul class="list-unstyled menu">
+                    <li><a href="#" onclick="history.back()">Home</a></li>
+                    <li><a href="/reserves">My Reserves</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- END navbar -->
       </div>
     </div>
   </div>
@@ -26,7 +48,7 @@
 
     <div class="col-md-4 content-wrap">
         <div class="box-top mb-1">
-          <h3 class="display-4">Room {{ room.number }}</h3>
+          <h3 class="display-4">Room {{ room.room_number }}</h3>
           <h4 class="room-price"><i class="fa fa-tag" aria-hidden="true"></i><span class="price"> ${{ room.price }}</span>/night</h4>
         </div>
         <div class="reviews mb-3">
@@ -110,7 +132,7 @@
                   </select>
               </div>
               <div class="row justify-content-center">
-                {% if room.available =="Yes" %}
+                {% if room.available == true %}
                   <button type="submit" class="btn-book" onclick="{{ url_for('user_route.reserve', room_id=room.id) }}">Book now</button>
                 {% else %}
                   <div class="not-avail"><p class="font-weight-bold">Not available</p></div>
