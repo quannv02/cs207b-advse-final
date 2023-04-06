@@ -4,8 +4,18 @@
 <script src="https://kit.fontawesome.com/64d58efce2.js"crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login_room_style.css') }}">
 
+<header class="site-header js-site-header">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+        <div class="site-logo pr-5" data-aos="fade">
+          <a href="/logout">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<div class="container-fluid px-md-0">
+<div class="container-fluid px-md-0 mt-5">
   <div class="row no-gutters align-items-stretch">
     <div class="col-md-7 img-wrap">
       <img class="user-room" src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="100%" height="100%">
@@ -14,7 +24,7 @@
     <div class="col-md-4 content-wrap">
         <div class="box-top mb-1">
           <h3 class="display-4">Room {{ room.number }}</h3>
-          <h4 class="room-price"><span class="price">${{ room.price }}</span>/night</h4>
+          <h4 class="room-price"><i class="fa fa-tag" aria-hidden="true"></i><span class="price"> ${{ room.price }}</span>/night</h4>
         </div>
         <div class="reviews mb-3">
           {% if room.average_rating < 1 %}
@@ -100,7 +110,7 @@
                 {% if room.available =="Yes" %}
                   <button type="submit" class="btn-book" onclick="{{ url_for('user_route.reserve', room_id=room.id) }}">Book now</button>
                 {% else %}
-                  <div class="not-avail"><p class="mt-2">Not available</p></div>
+                  <div class="not-avail"><p class="font-weight-bold">Not available</p></div>
                 {% endif %}
               </div>
             </form>
