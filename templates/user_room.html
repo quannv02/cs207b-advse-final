@@ -110,7 +110,7 @@
                   </select>
               </div>
               <div class="row justify-content-center">
-                {% if room.available =="Yes" %}
+                {% if room.available == true %}
                   <button type="submit" class="btn-book" onclick="{{ url_for('user_route.reserve', room_id=room.id) }}">Book now</button>
                 {% else %}
                   <div class="not-avail"><p class="font-weight-bold">Not available</p></div>
