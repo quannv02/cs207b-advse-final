@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Room {{ room.number }}{% endblock %}
+
 {% block content %}
 <script src="https://kit.fontawesome.com/64d58efce2.js"crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login_room_style.css') }}">
@@ -7,7 +8,7 @@
 <header class="site-header js-site-header">
     <div class="container-fluid">
       <div class="row align-items-center justify-content-between">
-        <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="index.html">Sogo Hotel</a></div>
+        <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
         <div class="site-logo pr-5" data-aos="fade">
           <a href="/logout">Logout</a>
         </div>
