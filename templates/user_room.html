@@ -1,22 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Room {{ room.number }}{% endblock %}
 
-{% block content %}
+{% block header %}
 <script src="https://kit.fontawesome.com/64d58efce2.js"crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login_room_style.css') }}">
 
 <header class="site-header js-site-header">
-    <div class="container-fluid">
-      <div class="row align-items-center justify-content-between">
-        <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
-        <div class="site-logo pr-5" data-aos="fade">
-          <a href="/logout">Logout</a>
-        </div>
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-between">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
+      <div class="site-logo pr-5" data-aos="fade">
+        <a href="/logout">Logout</a>
       </div>
     </div>
-  </header>
+  </div>
+</header>
+{% endblock %}
 
-<div class="container-fluid px-md-0 mt-5">
+{% block body %}
+<div class="container-fluid px-md-0 mt-5 pt-5">
   <div class="row no-gutters align-items-stretch">
     <div class="col-md-7 img-wrap">
       <img class="user-room" src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="100%" height="100%">
@@ -207,3 +209,23 @@
 </div>
 
 <{% endblock %}
+
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
+
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock %}
