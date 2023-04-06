@@ -163,6 +163,6 @@ def add_review_route(room_id):
             comment = request.form['comment']
             add_review(room_id,user_id, comment, rating)
             if session['is_admin'] or session['is_staff']:
-                return redirect(url_for('admin_route.modify_room', room_id=room_id, message="Review added successfully"))
+                return redirect(url_for('admin_route.modify_room_route', room_id=room_id, message="Review added successfully"))
             else:
                 return redirect(url_for('user_route.room', room_id=room_id, message="Review added successfully"))
