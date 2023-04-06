@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}Payment{% endblock %}
+
+{% block body %}
+{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/payment_style.css') }}">
+
+<div class="card">
+  <div class="card-top border-bottom text-center">
+       <a class = "text-info" href="{{ url_for('user_route.reserves') }}"> Back to reservation</a>
+      <span id="logo">Hotel payment system</span>
+  </div>
+  <div class="card-body">
+      <div class="row upper">
+          <span><i class="fa fa-check-circle-o">1</i> Confirm Info</span>
+          <span id="payment"><span id="three">2</span>Result</span>
+      </div>
+      <div class="row">
+          <div class="col">
+              <div class="right border">
+                  <div class="header text-success">Congratulation !</div>
+                  <p>Total payed item: {{ reservation|length }}</p>
+
+                  {% for item in reservation %}
+                  <div class="row item">
+                      <div class="col-md-4 align-self-center"><img class="img-fluid" src="{{ url_for('static', filename='images/' + item.image) }}"></div>
+                      <div class="col-md-8">
+                          <div class="row text-info">Room number: {{ item.room_number }}</div>
+                          <div class="row text-info">Floor: {{ item.floor }}</div>
+                          <div class="row text-dark">Capacity: {{ item.capacity }} people</div>
+                          <div class="row text-muted">Check in: {{ item.check_in }}</div>
+                          <div class="row text-muted">Check out: {{ item.check_out }}</div>
+                          <div class="row text-dark">Total days: {{ item.day_stay.days }}</div>
+                          <div class="row text-muted">Base price: $ {{item.base_price}}</div>
+                          <div class="row"><b>Total: $ {{ item.price }}</b></div>
+                      </div>
+                  </div>
+                  <hr>
+                  {% endfor %}
+                  <!-- <div class="row lower">
+                      <div class="col text-left">Subtotal</div>
+                      <div class="col text-right">$ {{total_pay}}</div>
+                  </div>
+                  <div class="row lower">
+                      <div class="col text-left">Tax:</div>
+                      <div class="col text-right">$ {{tax}}</div>
+                  </div> -->
+                  <div class="row lower">
+                      <div class="col text-left"><b>You have payed</b></div>
+                      <div class="col text-right"><b>$ {{finally_pay}}</b></div>
+                  </div>
+                  <!-- <div class="row lower">
+                      <div class="col text-left"><a href="#"><u>Add promo code</u></a></div>
+                  </div> -->
+                  <button class="btn bg-success" onclick="location.href='/'" >Back to home</button>
+                  <p class="text-muted text-center">Complimentary Contact & Returns</p>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+<div>
+</div>
+</div>
+
+
+{% endblock %}

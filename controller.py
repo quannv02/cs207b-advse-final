@@ -51,8 +51,9 @@ def delete_room(room_id):
     session.close()
     return room
 
-# TODO: not used
-def get_available_rooms(start_date, end_date):
+def get_available_rooms(start_date, end_date, number_adults, number_children, price):
+    
+    people = number_adults + int(number_children/2)
     session = DBSession()
     rooms = session.query(Room).filter_by(available=1).all()
     for room in rooms:
@@ -66,6 +67,11 @@ def get_available_rooms(start_date, end_date):
                 rooms.remove(room)
             elif reservation.start_date >= start_date and reservation.end_date <= end_date:
                 rooms.remove(room)
+        # print(room.price, price)
+        if room.price > price or room.capacity < people:
+            # print("removed")
+            rooms.remove(room)
+
     session.close()
     return rooms
 
@@ -111,18 +117,36 @@ def get_all_reservations():
     session.close()
     return reservations
 
-def get_reservations_by_guest_id(guest_id):
+def get_reservations_by_guest_id(guest_id, status = 0):
     session = DBSession()
-    reservations_raw = session.query(Reservation).filter_by(guest_id=guest_id).all()
+    if status == 0:
+        reservations_raw = session.query(Reservation).filter_by(guest_id=guest_id, status=0).all()
+    else:
+        reservations_raw = session.query(Reservation).filter_by(guest_id=guest_id).all()
+    
     reservations = []
     for reservation in reservations_raw:
         room = session.query(Room).get(reservation.room_id)
         reservation.room_number = room.room_number
-        reservation.price = room.price
+        reservation.check_in = reservation.start_date.strftime("%d-%m-%Y")
+        reservation.check_out = reservation.end_date.strftime("%d-%m-%Y")
+        reservation.day_stay = reservation.end_date - reservation.start_date
+        reservation.base_price = room.price
+        reservation.price = room.price * reservation.day_stay.days
         reservation.floor = room.floor
         reservation.capacity = room.capacity
         reservation.image = room.image
         reservations.append(reservation)
+    session.close()
+    return reservations
+
+def pay_reservations_by_guest_id(guest_id):
+    session = DBSession()
+    reservations = session.query(Reservation).filter_by(guest_id=guest_id).all()
+    for reservation in reservations:
+        reservation = session.query(Reservation).get(reservation.id)
+        reservation.status = 1
+        session.commit()
     session.close()
     return reservations
 
@@ -145,7 +169,27 @@ def get_reservations_by_room_id(room_id):
 def make_reservation(guest_id, room_id, start_date, end_date):
     session = DBSession()
     reservation = Reservation(start_date=start_date, end_date=end_date, guest_id=guest_id, room_id=room_id)
+    
+    reservations = session.query(Reservation).filter_by(room_id=room_id).all()
+    for reservation in reservations:
+        if reservation.start_date <= start_date and reservation.end_date >= end_date:
+            return False
+        elif reservation.start_date <= start_date and reservation.end_date >= start_date:
+            return False
+        elif reservation.start_date <= end_date and reservation.end_date >= end_date:
+            return False
+        elif reservation.start_date >= start_date and reservation.end_date <= end_date:
+            return False
+    
     session.add(reservation)
+    session.commit()
+    session.close()
+    return True
+
+def delete_reservation(reservation_id):
+    session = DBSession()
+    reservation = session.query(Reservation).get(reservation_id)
+    session.delete(reservation)
     session.commit()
     session.close()
     return reservation

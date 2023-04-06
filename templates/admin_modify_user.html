@@ -87,7 +87,8 @@
                 <label for="phone_number">Phone</label>
                 <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter phone" value="{{ user.phone_number }}">
             </div>
-
+            
+            {% if session['is_admin'] %}
             <div class="form-group">
                 <label for="role">is Staff</label>
                 <select class="form-control" id="is_staff" name="is_staff">
@@ -95,6 +96,8 @@
                     <option value="1" {% if user.is_staff == 1 %} selected {% endif %}>Yes</option>
                 </select>
             </div>
+            {% endif %}
+
             <button type="submit" class="btn btn-primary btn-block text-white">Save</button>
 
         </form>

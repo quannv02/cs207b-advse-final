@@ -74,7 +74,10 @@ def login():
             user = getUser(username)
             session['logged_in'] = True
             session['user'] = username
-            session['friendly_name'] = user.friendly_name
+            if user.friendly_name:
+                session['friendly_name'] = user.friendly_name
+            else:
+                session['friendly_name'] = username
             session['id'] = user.id
             session['is_admin'] = user.is_admin
             session['is_staff'] = user.is_staff

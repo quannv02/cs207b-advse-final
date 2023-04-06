@@ -11,10 +11,13 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='css/userStarter.css') }}"
 />
+
+<script src="https://kit.fontawesome.com/64d58efce2.js"crossorigin="anonymous"></script>
+
 <header class="site-header js-site-header">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="/">Press Hotel</a></div>
       <div class="col-6 col-lg-8">
         <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
           <span></span>
@@ -29,9 +32,11 @@
               <div class="row full-height align-items-center">
                 <div class="col-md-6 mx-auto">
                   <ul class="list-unstyled menu">
+                    <h1>Welcome <b> {{session.get('friendly_name')}} </b> </h1>
                     <li><a href="#">Home</a></li>
                     <li><a href="/reserves">My Reserves</a></li>
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href="/users/{{session.get('id')}}">Profile</a></li>
                   </ul>
                 </div>
               </div>
@@ -46,7 +51,6 @@
 {% endblock %}
 
 {% block body %}
-<!-- TODO: implement this -->
 
 <!-- main-slider -->
 <section class="home-main-slider" id="home">
@@ -139,8 +143,8 @@
           <div class="form-inner-cont">
             <h3 class="title-small">Check Availability</h3>
             <form
-              action="search-results.html"
               method="post"
+              action="{{ url_for('user_route.user')}}"
               class="signin-form"
             >
               <div class="row book-form">
@@ -148,50 +152,50 @@
                   <label>Check-in Date</label>
                   <input
                     type="date"
-                    name=""
+                    value = "{{ today }}"
                     placeholder="Date"
-                    required=""
+                    name="check_in"
                   />
                 </div>
                 <div class="form-input col-md-4 col-sm-6 mt-3">
                   <label>Check-out Date</label>
                   <input
                     type="date"
-                    name=""
+                    value = "{{ tomorrow }}"
                     placeholder="Date"
-                    required=""
+                    name="check_out"
                   />
                 </div>
                 <div class="form-input col-md-4 col-sm-6 mt-3">
                   <label>Adults</label>
-                  <select class="selectpicker">
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                    <option>04</option>
+                  <select name="number_adults" class="selectpicker">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
                   </select>
                 </div>
                 <div class="form-input col-md-4 col-sm-6 mt-3">
                   <label>Children</label>
-                  <select class="selectpicker">
-                    <option>01</option>
-                    <option>02</option>
-                    <option>03</option>
-                    <option>04</option>
+                  <select name="number_children"  class="selectpicker">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
                   </select>
                 </div>
                 <div class="form-input col-md-4 col-sm-6 mt-3">
                   <label>Price </label>
                   <input
                     type="text"
-                    name=""
                     placeholder="Max Price ($)"
-                    required
+                    name="price"
                   />
                 </div>
                 <div class="bottom-btn col-md-4 col-sm-6 mt-3">
                   <label>Check availability </label>
-                  <button class="btn btn-style btn-primary w-100 px-2">
+                  <button type="submit" class="btn btn-style btn-primary w-100 px-2">
                     Check Availability
                   </button>
                 </div>
@@ -203,6 +207,73 @@
     </div>
   </div>
 </section>
+
+{% if rooms %}
+<div class="container">
+  <h3 class="title-small" >Available Hotel Rooms</h3>
+  <table class="table table-striped">
+      <thead>
+          <tr>
+              <th>Room Number</th>
+              <th>Price</th>
+              <th>Image</th>
+              <th>Floor</th>
+              <th>Capacity</th>
+              <th>description</th>
+              <th>available</th>
+              <th>average_rating</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for room in rooms %}
+          <tr>
+              <td><a href="{{ url_for('user_route.room', room_id=room.id) }}">Check room {{ room.room_number }}</a></td>
+              <td>${{ room.price }}</td>
+              <td><img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200"></td>
+              <td>{{ room.floor }}</td>
+              <td>{{ room.capacity }}</td>
+              <td>{{ room.description }}</td>
+              <td>{{ "Yes" if room.available else "No" }}</td>
+              <td class="reviews mb-3">
+                {% if room.average_rating < 2 %}
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i><!--Empty star-->
+                {% elif room.average_rating < 3 %}
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i><!--Empty star-->
+                {% elif room.average_rating < 4 %}
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i><!--Empty star-->
+                {% elif room.average_rating < 5 %}
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i><!--Empty star-->
+                {% else %}
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i><!--Empty star-->
+                {% endif %}
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endif %}
+
 <!-- //availability-form-section -->
 <!-- about -->
 <section class="home-about py-5">
@@ -270,12 +341,13 @@
                 <i class="fa fa-check" aria-hidden="true"> Free Wi-fi</i><br/>
                 <i class="fa fa-check" aria-hidden="true"> Private bathroom</i><br/>
             </div>
-            <a href="#book" class="btn btn-style btn-primary mt-sm-4 mt-3"
+            <a href="/reserves" class="btn btn-style btn-primary mt-sm-4 mt-3"
               >Book Now</a
             >
           </div>
         </div>
       </div>
+      
       <div class="maghny-gd-1 col-lg-6 mt-lg-0 mt-4">
         <div class="row">
           <div class="maghny-gd-1 col-6">
