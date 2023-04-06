@@ -232,6 +232,11 @@ form.sign-in-form {
     transition: 1s 0.8s ease-in-out;
   }
 
+  .input-field {
+    margin: 5px auto 0;
+
+  }
+
   .signin-signup,
   .cont.sign-up-mode .signin-signup {
     left: 50%;
@@ -330,7 +335,7 @@ form.sign-in-form {
   }
 
   .cont.sign-up-mode:before {
-    bottom: 26%;
+    bottom: 30%;
     left: 50%;
   }
 }
