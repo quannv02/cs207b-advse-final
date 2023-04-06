@@ -8,7 +8,7 @@ admin_route = Blueprint('admin_route', __name__)
 def users(user_id):
     with app.app_context():
         if session.get('logged_in'):
-            if session['is_admin']:
+            if session['is_admin'] or session['id'] == user_id:
                 user = getUser(id = user_id)
                 return render_template('admin_modify_user.html', user=user)
         return redirect(url_for('index'))
@@ -17,7 +17,7 @@ def users(user_id):
 def modify_user(user_id):
     with app.app_context():
         if session.get('logged_in'):
-            if session['is_admin']:
+            if session['is_admin'] or session['id'] == user_id:
                 print(request.form)
                 if request.method == 'POST':
                     #TODO: not remove admin

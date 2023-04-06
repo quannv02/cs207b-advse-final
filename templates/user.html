@@ -32,9 +32,11 @@
               <div class="row full-height align-items-center">
                 <div class="col-md-6 mx-auto">
                   <ul class="list-unstyled menu">
+                    <h1>Welcome <b> {{session.get('friendly_name')}} </b> </h1>
                     <li><a href="#">Home</a></li>
                     <li><a href="/reserves">My Reserves</a></li>
                     <li><a href="/logout">Logout</a></li>
+                    <li><a href="/users/{{session.get('id')}}">Profile</a></li>
                   </ul>
                 </div>
               </div>
@@ -150,6 +152,7 @@
                   <label>Check-in Date</label>
                   <input
                     type="date"
+                    value = "{{ today }}"
                     placeholder="Date"
                     name="check_in"
                   />
@@ -158,6 +161,7 @@
                   <label>Check-out Date</label>
                   <input
                     type="date"
+                    value = "{{ tomorrow }}"
                     placeholder="Date"
                     name="check_out"
                   />

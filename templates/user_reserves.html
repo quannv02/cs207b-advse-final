@@ -51,9 +51,66 @@
   <div class="container">
     <div class="row justify-content-center text-center mb-5">
       <div class="col-md-7">
-        <h2 class="heading" data-aos="fade-up">Your Reserves</h2>
+        <h2 class="heading" data-aos="fade-up">Your Reserves History</h2>
       </div>
     </div>
+
+    <div class="row" data-aos="fade-up">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr>
+                <th>Room</th>
+                <th>&nbsp;</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Check in time</th>
+                <th>Check out time</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reservation in history %}
+              <tr class="alert" role="alert">
+
+                <td>
+                  <div class="email">
+                    <span
+                      ><a
+                        href="{{ url_for('user_route.room', room_id=reservation.room_id) }}"
+                        >{{ reservation.room_number }}</a
+                      ></span
+                    >
+                  </div>
+                </td>
+
+                <td>
+                  <div
+                    class="img"
+                    style="background-image: url({{ url_for('static', filename='images/' + reservation.image) }})"
+                  ></div>
+                </td>
+
+                <td>${{ reservation.price }}</td>
+                <td>{{ reservation.capacity }}</td>
+                <td>{{ reservation.check_in }}</td>
+                <td>{{ reservation.check_out }}</td>
+                <td>{{ "payed" if reservation.status == 1 else "not pay" if reservation.status == 0 else reservation.status}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Pending Reserves</h2>
+      </div>
+    </div>
+
     <div class="row" data-aos="fade-up">
       <div class="col-md-12">
         <div class="table-wrap">
@@ -97,17 +154,18 @@
                 </td>
                 <td>${{ reservation.price }}</td>
                 <td>{{ reservation.capacity }}</td>
-                <td>{{ reservation.start_date }}</td>
-                <td>{{ reservation.end_date }}</td>
+                <td>{{ reservation.check_in }}</td>
+                <td>{{ reservation.check_out }}</td>
                 <td>
-                  <a
-                    href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}"
-                  ></a>
+                  
+                    
+                  
                   <button
                     type="button"
                     class="close"
                     data-dismiss="alert"
                     aria-label="Close"
+                    onclick="location.href='{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}'"
                   >
                     <span aria-hidden="true"><i class="fa fa-close"></i></span>
                   </button>
@@ -119,11 +177,18 @@
         </div>
       </div>
     </div>
+
     <div class="row justify-content-center" data-aos="fade-up">
       <div class="col-md-6 text-center mb-4">
-        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{{ url_for('user_route.payment') }}'">
-          Pay now
-        </button>
+        {% if request_pay %}
+          <button type="button" class="btn btn-primary btn-lg btn-block" onclick="location.href='{{ url_for('user_route.payment') }}'">
+            Pay now
+          </button>
+        {% else %}
+          <div>
+            <p class="mb-0">Oh, You don't have any reserves to pay</p>
+          </div>
+        {% endif %}
       </div>
     </div>
   </div>
