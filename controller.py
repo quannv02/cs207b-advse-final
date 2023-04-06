@@ -233,8 +233,7 @@ def add_review(room_id, user_id, comment, rating):
 
 """  DONE:  User interaction """
 
-def createUsers(username, password, friendly_name, phone_number, email, is_admin, is_staff):
-    session = DBSession()
+def createUsers(username, password, friendly_name, phone_number, email, is_admin, is_staff, session = DBSession()):
     hashed_password = generate_password_hash(password)
     user = User(username=username, password=hashed_password, friendly_name=friendly_name, phone_number=phone_number, email=email, is_admin=is_admin, is_staff=is_staff)
     session.add(user)
@@ -242,8 +241,7 @@ def createUsers(username, password, friendly_name, phone_number, email, is_admin
     session.close()
     return user
 
-def modifyUser(id, username, password, friendly_name, phone_number, email, is_admin, is_staff):
-    session = DBSession()
+def modifyUser(id, username, password, friendly_name, phone_number, email, is_admin, is_staff, session = DBSession()):
     
     user = session.query(User).get(id)
 
@@ -266,8 +264,7 @@ def modifyUser(id, username, password, friendly_name, phone_number, email, is_ad
     session.close()
     return user
 
-def deleteUser(id):
-    session = DBSession()
+def deleteUser(id, session = DBSession()):
     user = session.query(User).get(id)
     session.delete(user)
     session.commit()
@@ -286,13 +283,11 @@ def checkUserAuthenticate(username, password):
     else:
         return False
 
-def getUser(username = None, id = None):
+def getUser(username = None, id = None,session = DBSession()):
     if id:
-        session = DBSession()
         user = session.query(User).get(id)
         session.close()
         return user
-    session = DBSession()
     user = session.query(User).filter_by(username=username).first()
     session.close()
     return user
@@ -302,3 +297,7 @@ def getAllUsers():
     users = session.query(User).all()
     session.close()
     return users
+
+
+
+
