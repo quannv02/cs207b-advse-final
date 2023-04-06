@@ -6,7 +6,7 @@
 <header class="site-header js-site-header">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="admin.html">Press Hotel</a></div>
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
       <div class="col-6 col-lg-8">
         <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
           <span></span>
@@ -87,7 +87,7 @@
                 <label for="phone_number">Phone</label>
                 <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Enter phone" value="{{ user.phone_number }}">
             </div>
-            
+
             {% if session['is_admin'] %}
             <div class="form-group">
                 <label for="role">is Staff</label>
