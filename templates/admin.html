@@ -6,7 +6,7 @@
 <header class="site-header js-site-header">
   <div class="container-fluid">
     <div class="row align-items-center">
-      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="admin.html">Press Hotel</a></div>
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
       <div class="col-6 col-lg-8">
         <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
           <span></span>
@@ -21,7 +21,7 @@
               <div class="row full-height align-items-center">
                 <div class="col-md-6 mx-auto">
                   <ul class="list-unstyled menu">
-                    <li class="active"><a href="admin.html">Home</a></li>
+                    <li class="active"><a href="#">Home</a></li>
                     <li><a class="smoothscroll" href="#add-room">Add Room</a></li>
                     <li><a class="smoothscroll" href="#modify-users">Modify Users</a></li>
                     <li><a class="smoothscroll" href="#modify-rooms">Modify Rooms</a></li>
@@ -162,7 +162,7 @@
                 <td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
                 <td>{{ user.phone_number }}</td>
                 <td>{{ user.email }}</td>
-                <td>{{ "admin" if user.is_admin else "staff" if user.is_staff else "user" }}</td>
+                <td>{{ "Admin" if user.is_admin else "Staff" if user.is_staff else "User" }}</td>
                 <!-- <td><a href="/remove_users/{{ user.id }}">X</a></td> -->
             </tr>
             {% endfor %}
