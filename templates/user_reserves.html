@@ -1,6 +1,9 @@
-{% extends "base.html" %} {% block content %}
+{% extends "base.html" %}
 
-<a href="{{ url_for('user_route.user')}}">Back</a>
+{% block title %}Reserves{% endblock %}
+
+{% block header %}
+<!-- <a href="{{ url_for('user_route.user')}}">Back</a> -->
 
 <link
   rel="stylesheet"
@@ -40,15 +43,18 @@
     </div>
   </div>
 </header>
+{% endblock %}
+<!-- END block header -->
 
-<section class="ftco-section">
+{% block body %}
+<section class="ftco-section mt-5">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6 text-center mb-4">
-        <h2 class="heading-section">Your reserves</h2>
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Your Reserves</h2>
       </div>
     </div>
-    <div class="row">
+    <div class="row" data-aos="fade-up">
       <div class="col-md-12">
         <div class="table-wrap">
           <table class="table">
@@ -113,7 +119,7 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" data-aos="fade-up">
       <div class="col-md-6 text-center mb-4">
         <button type="button" class="btn btn-primary btn-lg btn-block">
           Pay now
@@ -124,3 +130,25 @@
 </section>
 
 {% endblock %}
+<!-- END block body -->
+
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
+
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+<!-- END block footer -->

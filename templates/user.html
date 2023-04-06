@@ -1,6 +1,8 @@
-{% extends "base.html" %} {% block content %}
-<!-- TODO: implement this -->
+{% extends "base.html" %}
 
+{% block title %}User Page{% endblock %}
+
+{% block header %}
 <link
   href="//fonts.googleapis.com/css?family=Spartan:400,500,600,700,900&display=swap"
   rel="stylesheet"
@@ -27,7 +29,7 @@
               <div class="row full-height align-items-center">
                 <div class="col-md-6 mx-auto">
                   <ul class="list-unstyled menu">
-                    <li><a href="#" onclick="history.back()">Home</a></li>
+                    <li><a href="#">Home</a></li>
                     <li><a href="/reserves">My Reserves</a></li>
                     <li><a href="/logout">Logout</a></li>
                   </ul>
@@ -41,6 +43,10 @@
     </div>
   </div>
 </header>
+{% endblock %}
+
+{% block body %}
+<!-- TODO: implement this -->
 
 <!-- main-slider -->
 <section class="home-main-slider" id="home">
@@ -352,8 +358,8 @@
         <div class="col-lg-6 left-wthree-img text-righ">
           <div class="position-relative">
             <img src="static/images/about4.jpg" alt="" class="img-fluid" />
-            
-            
+
+
           </div>
         </div>
         <div class="col-lg-6 mt-lg-0 mt-5 about-right-faq align-self">
@@ -385,7 +391,7 @@
             <li>
                 <span class="fa fa-check" aria-hidden="true"></span>Most popular facilities
             </li>
-            
+
           </ul>
         </div>
       </div>
@@ -455,4 +461,27 @@
 
 
 <script src="/static/js/bootstrap.min.js"></script>
-{% endblock %} {% endblock %}
+{% endblock %}
+<!-- END block script-->
+{% endblock %}
+<!-- END block body-->
+
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
+
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock %}
