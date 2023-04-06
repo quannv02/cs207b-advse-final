@@ -232,6 +232,11 @@ form.sign-in-form {
     transition: 1s 0.8s ease-in-out;
   }
 
+  .input-field {
+    margin: 5px auto 0;
+
+  }
+
   .signin-signup,
   .cont.sign-up-mode .signin-signup {
     left: 50%;
@@ -330,7 +335,7 @@ form.sign-in-form {
   }
 
   .cont.sign-up-mode:before {
-    bottom: 26%;
+    bottom: 30%;
     left: 50%;
   }
 }
@@ -484,6 +489,10 @@ select.opts {
   transition: all ease 0.3s;
 }
 
+.room-price .price{
+  font-size: 30px;
+}
+
 @media (max-width: 1060px) {
   .testimonial-box {
     width: 45%;
@@ -497,6 +506,13 @@ select.opts {
   .testimonial-heading h1 {
     font-size: 1.4rem;
   }
+
+  .room-price {
+    font-size: 20px;
+  }
+  .room-price .price{
+    font-size: 30px;
+  }
 }
 @media (max-width: 340px) {
   .box-top {
@@ -506,6 +522,7 @@ select.opts {
   .reviews {
     margin-top: 10px;
   }
+
 }
 ::selection {
   color: #ffffff;

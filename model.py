@@ -36,6 +36,7 @@ class Reservation(Base):
     guest_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     start_date = Column(DateTime, nullable=False, default=datetime.utcnow)
     end_date = Column(DateTime, nullable=False)
+    status = Column(Integer, nullable=False, default=0) # 0 = pending, 1 = payed, not comfirm , 2 = confirmed, 3 = cancelled
     room = relationship('Room', backref='reservations')
 
 class Review(Base):
