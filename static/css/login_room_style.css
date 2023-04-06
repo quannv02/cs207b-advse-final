@@ -1,0 +1,588 @@
+/*------------ log-in------------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Playfair Display', times, serif;
+}
+
+.cont {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.forms-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.signin-signup {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  left: 75%;
+  width: 50%;
+  transition: 1s 0.7s ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  z-index: 5;
+}
+
+.cont form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0rem 5rem;
+  transition: all 0.2s 0.7s;
+  overflow: hidden;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+form.sign-up-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+form.sign-in-form {
+  z-index: 2;
+}
+
+.title {
+  font-size: 2.2rem;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.input-field {
+  display: block;
+  width: 260px;
+  margin: 25px auto 0;
+  text-align: center;
+}
+
+.input-field span {
+  font-size: 12px;
+  color: #afafaf;
+  text-transform: uppercase;
+}
+
+.input-field input {
+  border: none;
+  outline: none;
+  background: none;
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.btn-login {
+  border: none;
+  outline: none;
+  width: 150px;
+  background-color: black;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  font-weight: 600;
+  margin: 10px 0;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn-login:hover {
+  background-color: #ffba5a;
+}
+.panels-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.cont:before {
+  content: '';
+  position: absolute;
+  height: 2000px;
+  width: 2000px;
+  top: -10%;
+  right: 48%;
+  transform: translateY(-50%);
+  background-image: url(../images/hero_4.jpg);
+  background-size: 70%;
+  transition: 1.8s ease-in-out;
+  border-radius: 50%;
+  z-index: 6;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  text-align: center;
+  z-index: 6;
+}
+
+.left-panel {
+  pointer-events: all;
+  padding: 3rem 17% 2rem 12%;
+}
+
+.right-panel {
+  pointer-events: none;
+  padding: 3rem 12% 2rem 17%;
+}
+
+.panel .content {
+  color: #fff;
+  transition: transform 0.9s ease-in-out;
+  transition-delay: 0.6s;
+}
+
+.panel h3 {
+  font-weight: 650;
+  line-height: 1;
+  font-size: 1.75rem;
+  color: #ca316e;
+}
+
+.panel p {
+  font-size: 1.25rem;
+  padding: 0.7rem 0;
+}
+
+.btn-login.transparent {
+  margin: 0;
+  background: transparent;
+  border: 2px solid #fff;
+  width: 130px;
+  height: 41px;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.right-panel .content {
+  transform: translateX(800px);
+}
+
+/* ANIMATION */
+
+.cont.sign-up-mode:before {
+  transform: translate(100%, -50%);
+  right: 52%;
+}
+
+.cont.sign-up-mode .left-panel .content {
+  transform: translateX(-800px);
+}
+
+.cont.sign-up-mode .signin-signup {
+  left: 25%;
+}
+
+.cont.sign-up-mode form.sign-up-form {
+  opacity: 1;
+  z-index: 2;
+}
+
+.cont.sign-up-mode form.sign-in-form {
+  opacity: 0;
+  z-index: 1;
+}
+
+.cont.sign-up-mode .right-panel .content {
+  transform: translateX(0%);
+}
+
+.cont.sign-up-mode .left-panel {
+  pointer-events: none;
+}
+
+.cont.sign-up-mode .right-panel {
+  pointer-events: all;
+}
+
+@media (max-width: 870px) {
+  .cont {
+    min-height: 800px;
+    height: 100vh;
+  }
+  .signin-signup {
+    width: 100%;
+    top: 115%;
+    transform: translate(-50%, -130%);
+    transition: 1s 0.8s ease-in-out;
+  }
+
+  .signin-signup,
+  .cont.sign-up-mode .signin-signup {
+    left: 50%;
+  }
+
+  .panels-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
+  }
+
+  .panel {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 8%;
+    grid-column: 1 / 2;
+  }
+
+  .right-panel {
+    grid-row: 3 / 4;
+  }
+
+  .left-panel {
+    grid-row: 1 / 2;
+  }
+
+  .panel .content {
+    padding-right: 15%;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.8s;
+  }
+  .panel h3 {
+    font-size: 1.75rem;
+  }
+  .panel p {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+  }
+
+  .btn.transparent {
+    width: 110px;
+    height: 35px;
+    font-size: 0.7rem;
+  }
+
+  .cont:before {
+    width: 1500px;
+    height: 1500px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 68%;
+    right: initial;
+    top: initial;
+    transition: 2s ease-in-out;
+  }
+
+  .cont.sign-up-mode:before {
+    transform: translate(-50%, 100%);
+    bottom: 32%;
+    right: initial;
+  }
+
+  .cont.sign-up-mode .left-panel .content {
+    transform: translateY(-300px);
+  }
+
+  .cont.sign-up-mode .right-panel .content {
+    transform: translateY(10px);
+  }
+
+  .right-panel .content {
+    transform: translateY(300px);
+  }
+
+  .cont.sign-up-mode .signin-signup {
+    top: 5%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (max-width: 570px) {
+  .cont form {
+    padding: 0 1.5rem;
+  }
+
+  .panel .content {
+    padding: 0.5rem 1rem;
+  }
+  .cont {
+    padding: 1.5rem;
+  }
+
+  .cont:before {
+    bottom: 65%;
+    left: 50%;
+  }
+
+  .cont.sign-up-mode:before {
+    bottom: 26%;
+    left: 50%;
+  }
+}
+/*---------------end-login------------------------*/
+
+/*---------user-room---------------*/
+.img-wrap, .content-wrap{
+  margin: 0 20px 0 20px;
+}
+
+img.user-room{
+  border-radius: 5%;
+}
+
+.amenties{
+  background-color: #f7f7f7;
+  border-radius: 5%;
+  margin: 0;
+  width: 100px;
+  height: 100px;
+  padding: 20px;
+}
+
+.booking-form {
+  background: #f7f7f7;
+  padding: 27px 40px 30px 40px;
+  border-radius: 4px;
+}
+
+.btn-book {
+  border: none;
+  outline: none;
+  width: 150px;
+  background-color: black;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.btn-book:hover {
+  background-color: #ffba5a;
+}
+
+.not-avail {
+  border: none;
+  outline: none;
+  width: 150px;
+  background-color: #952828;
+  height: 49px;
+  border-radius: 49px;
+  color: #fff;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.not-avail p {
+  margin-top: 0.7rem !important;
+}
+
+.select-option .opts,
+select.opts {
+  border-radius: 2px;
+  border: 1px solid #ebebeb;
+  height: 39px;
+  line-height: 50px;
+  padding-left: 10px;
+  width: 100%;
+  float: none;
+}
+
+/*---------reviews---------------*/
+
+.room-price {
+  color: #ca316e;
+}
+
+.site-menu-toggle {
+    top: 13px;
+    width: 24px;
+  }
+#testimonials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.testimonial-box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.testimonial-box {
+  width: 500px;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 15px;
+  cursor: pointer;
+}
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.profile {
+  display: flex;
+  align-items: center;
+}
+.name-user {
+  display: flex;
+  flex-direction: column;
+}
+.name-user strong {
+  color: #3d3d3d;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+.name-user span {
+  color: #979797;
+  font-size: 0.8rem;
+}
+.reviews {
+  color: #f9d71c;
+}
+.box-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.client-comment p {
+  font-size: 0.9rem;
+  color: #4b4b4b;
+}
+.testimonial-box:hover {
+  transform: translateY(-10px);
+  transition: all ease 0.3s;
+}
+
+.room-price .price{
+  font-size: 30px;
+}
+
+@media (max-width: 1060px) {
+  .testimonial-box {
+    width: 45%;
+    padding: 10px;
+  }
+}
+@media (max-width: 790px) {
+  .testimonial-box {
+    width: 100%;
+  }
+  .testimonial-heading h1 {
+    font-size: 1.4rem;
+  }
+
+  .room-price {
+    font-size: 20px;
+  }
+  .room-price .price{
+    font-size: 30px;
+  }
+}
+@media (max-width: 340px) {
+  .box-top {
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .reviews {
+    margin-top: 10px;
+  }
+
+}
+::selection {
+  color: #ffffff;
+  background-color: #252525;
+}
+
+.give-fb {
+  width: 85%;
+  margin: auto;
+  padding: 10px;
+}
+
+.comment-field {
+  width: 100%;
+  background-color: #ffffff;
+  margin: 10px 0;
+  height: 181px;
+  border-radius: 19px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+  border: 1px solid black;
+}
+.detail {
+  justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.review-section h3 {
+  width: 85%;
+  text-align: center;
+}
+
+/*---------end-reviews---------------*/
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 2;
+  -webkit-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+  background-color: black;
+}
+
+.site-logo {
+  padding-left: 40px;
+}
+.site-logo a {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  line-height: 1;
+  font-family: 'Playfair Display', times, serif;
+}
+@media (max-width: 991.98px) {
+  .site-logo a {
+    font-size: 15px;
+  }
+}
+
+/*---------end-header---------------*/

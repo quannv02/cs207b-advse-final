@@ -1,45 +1,154 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block title %}Reserves{% endblock %}
 
-<h1>your reserves</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Room Number</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Floor</th>
-            <th>Capacity</th>
-            <th>check in</th>
-            <th>check out</th>
-            <th>status</th>
-            <th></th><!--cancel</th> -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for reservation in reservations %}
-        <tr>
-            <td><a href="{{ url_for('user_route.room', room_id=reservation.room_id) }}">{{ reservation.room_number }}</a></td>
-            <td>${{ reservation.price }}</td>
-            <td><img src="{{ url_for('static', filename='images/' + reservation.image) }}" alt="room image" width="200" height="200"></td>
-            <td>{{ reservation.floor }}</td>
-            <td>{{ reservation.capacity }}</td>
-            <td>{{ reservation.start_date }}</td>
-            <td>{{ reservation.end_date }}</td>
-            <!--  # 0 = pending, 1 = payed, not comfirm , 2 = confirmed, 3 = cancelled -->
-            <td>{{ "not payed" if reservation.status == 0 else "payed, wait for confirmation" if reservation.status == 1 else "confirmed" if reservation.status == 2 else "cancelled" }}</td>
-            <td><a href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}">cancel</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
+{% block header %}
+<!-- <a href="{{ url_for('user_route.user')}}">Back</a> -->
 
-</table>
-{%if request_pay%}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/reserves.css') }}"
+/>
 
-<h2>you have a reservation to <a href="{{ url_for('user_route.payment') }}">pay</a>    </h2>
+<header class="site-header js-site-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade">
+        <a href="#">Press Hotel</a>
+      </div>
+      <div class="col-6 col-lg-8">
+        <div class="site-menu-toggle js-site-menu-toggle" data-aos="fade">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- END menu-toggle -->
 
-{%endif%}
-
-    
+        <div class="site-navbar js-site-navbar">
+          <nav role="navigation">
+            <div class="container">
+              <div class="row full-height align-items-center">
+                <div class="col-md-6 mx-auto">
+                  <ul class="list-unstyled menu">
+                    <li><a href="#" onclick="history.back()">Home</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- END navbar -->
+      </div>
+    </div>
+  </div>
+</header>
 {% endblock %}
+<!-- END block header -->
+
+{% block body %}
+<section class="ftco-section mt-5">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-md-7">
+        <h2 class="heading" data-aos="fade-up">Your Reserves</h2>
+      </div>
+    </div>
+    <div class="row" data-aos="fade-up">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr>
+                <th>&nbsp;</th>
+                <th>Room</th>
+                <th>&nbsp;</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Check in time</th>
+                <th>Check out time</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reservation in reservations %}
+              <tr class="alert" role="alert">
+                <td>
+                  <label class="checkbox-wrap checkbox-primary">
+                    <input type="checkbox" checked />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td>
+                  <div
+                    class="img"
+                    style="background-image: url(/static/images/room1.jpg)"
+                  ></div>
+                </td>
+                <td>
+                  <div class="email">
+                    <span
+                      ><a
+                        href="{{ url_for('user_route.room', room_id=reservation.room_id) }}"
+                        >{{ reservation.room_number }}</a
+                      ></span
+                    >
+                  </div>
+                </td>
+                <td>${{ reservation.price }}</td>
+                <td>{{ reservation.capacity }}</td>
+                <td>{{ reservation.start_date }}</td>
+                <td>{{ reservation.end_date }}</td>
+                <td>
+                  <a
+                    href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}"
+                  ></a>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center" data-aos="fade-up">
+      <div class="col-md-6 text-center mb-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+          Pay now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+<!-- END block body -->
+
+{% block footer %}
+<footer class="section footer-section">
+  <div class="container">
+    <div class="row pt-5">
+      <p class="col-md-6 text-left">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+      </p>
+
+      <p class="col-md-6 text-right social">
+        <a href="#"><span class="fa fa-tripadvisor"></span></a>
+        <a href="#"><span class="fa fa-facebook"></span></a>
+        <a href="#"><span class="fa fa-twitter"></span></a>
+        <a href="#"><span class="fa fa-linkedin"></span></a>
+        <a href="#"><span class="fa fa-vimeo"></span></a>
+      </p>
+    </div>
+  </div>
+</footer>
+{% endblock %}
+<!-- END block footer -->
