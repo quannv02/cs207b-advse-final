@@ -1,38 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <!-- TODO: implement this -->
-<a href="{{ url_for('user_route.reserves')}}">my reservation</a>
 
-<!-- <div class="container">
-    <h1>Available Hotel Rooms</h1>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Room Number</th>
-                <th>Price</th>
-                <th>Image</th>
-                <th>Floor</th>
-                <th>Capacity</th>
-                <th>description</th>
-                <th>available</th>
-                <th>average_rating</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for room in rooms %}
-            <tr>
-                <td><a href="{{ url_for('user_route.room', room_id=room.id) }}">{{ room.room_number }}</a></td>
-                <td>${{ room.price }}</td>
-                <td><img src="{{ url_for('static', filename='images/' + room.image) }}" alt="room image" width="200" height="200"></td>
-                <td>{{ room.floor }}</td>
-                <td>{{ room.capacity }}</td>
-                <td>{{ room.description }}</td>
-                <td>{{ "Yes" if room.available else "No" }}</td>
-                <td>{{ room.average_rating }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div> -->
 <link
   href="//fonts.googleapis.com/css?family=Spartan:400,500,600,700,900&display=swap"
   rel="stylesheet"
@@ -41,8 +9,39 @@
   rel="stylesheet"
   href="{{ url_for('static', filename='css/userStarter.css') }}"
 />
-    <!--header-->
+<header class="site-header js-site-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade"><a href="#">Press Hotel</a></div>
+      <div class="col-6 col-lg-8">
+        <div class="site-menu-toggle js-site-menu-toggle"  data-aos="fade">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- END menu-toggle -->
+
+        <div class="site-navbar js-site-navbar">
+          <nav role="navigation">
+            <div class="container">
+              <div class="row full-height align-items-center">
+                <div class="col-md-6 mx-auto">
+                  <ul class="list-unstyled menu">
+                    <li><a href="#" onclick="history.back()">Home</a></li>
+                    <li><a href="/reserves">My Reserves</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- END navbar -->
+      </div>
+    </div>
+  </div>
 </header>
+
 <!-- main-slider -->
 <section class="home-main-slider" id="home">
   <div class="companies20-content">

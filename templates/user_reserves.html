@@ -1,35 +1,126 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<a href="{{ url_for('user_route.user')}}">Back</a>
 
-<h1>your reserves</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Room Number</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Floor</th>
-            <th>Capacity</th>
-            <th>check in</th>
-            <th>check out</th>
-            <th></th><!--cancel</th> -->
-        </tr>
-    </thead>
-    <tbody>
-        {% for reservation in reservations %}
-        <tr>
-            <td><a href="{{ url_for('user_route.room', room_id=reservation.room_id) }}">{{ reservation.room_number }}</a></td>
-            <td>${{ reservation.price }}</td>
-            <td><img src="{{ url_for('static', filename='images/' + reservation.image) }}" alt="room image" width="200" height="200"></td>
-            <td>{{ reservation.floor }}</td>
-            <td>{{ reservation.capacity }}</td>
-            <td>{{ reservation.start_date }}</td>
-            <td>{{ reservation.end_date }}</td>
-            <td><a href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}">cancel</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-    
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/reserves.css') }}"
+/>
+
+<header class="site-header js-site-header">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-lg-4 site-logo" data-aos="fade">
+        <a href="#">Press Hotel</a>
+      </div>
+      <div class="col-6 col-lg-8">
+        <div class="site-menu-toggle js-site-menu-toggle" data-aos="fade">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <!-- END menu-toggle -->
+
+        <div class="site-navbar js-site-navbar">
+          <nav role="navigation">
+            <div class="container">
+              <div class="row full-height align-items-center">
+                <div class="col-md-6 mx-auto">
+                  <ul class="list-unstyled menu">
+                    <li><a href="#" onclick="history.back()">Home</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <!-- END navbar -->
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-4">
+        <h2 class="heading-section">Your reserves</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr>
+                <th>&nbsp;</th>
+                <th>Room</th>
+                <th>&nbsp;</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Check in time</th>
+                <th>Check out time</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for reservation in reservations %}
+              <tr class="alert" role="alert">
+                <td>
+                  <label class="checkbox-wrap checkbox-primary">
+                    <input type="checkbox" checked />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td>
+                  <div
+                    class="img"
+                    style="background-image: url(/static/images/room1.jpg)"
+                  ></div>
+                </td>
+                <td>
+                  <div class="email">
+                    <span
+                      ><a
+                        href="{{ url_for('user_route.room', room_id=reservation.room_id) }}"
+                        >{{ reservation.room_number }}</a
+                      ></span
+                    >
+                  </div>
+                </td>
+                <td>${{ reservation.price }}</td>
+                <td>{{ reservation.capacity }}</td>
+                <td>{{ reservation.start_date }}</td>
+                <td>{{ reservation.end_date }}</td>
+                <td>
+                  <a
+                    href="{{ url_for('user_route.cancel_reservation', reservation_id=reservation.id) }}"
+                  ></a>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true"><i class="fa fa-close"></i></span>
+                  </button>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-4">
+        <button type="button" class="btn btn-primary btn-lg btn-block">
+          Pay now
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
 {% endblock %}
