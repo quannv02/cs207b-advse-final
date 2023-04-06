@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Playfair Display", times, serif; }
+  font-family: 'Playfair Display', times, serif;
 }
 
 .cont {
@@ -62,29 +62,29 @@ form.sign-in-form {
 }
 
 .input-field {
-    display: block;
-    width: 260px;
-    margin: 25px auto 0;
-    text-align: center;
+  display: block;
+  width: 260px;
+  margin: 25px auto 0;
+  text-align: center;
 }
 
 .input-field span {
-    font-size: 12px;
-    color: #afafaf;
-    text-transform: uppercase;
+  font-size: 12px;
+  color: #afafaf;
+  text-transform: uppercase;
 }
 
 .input-field input {
-    border: none;
-    outline: none;
-    background: none;
-    display: block;
-    width: 100%;
-    margin-top: 5px;
-    padding-bottom: 5px;
-    font-size: 16px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-    text-align: center;
+  border: none;
+  outline: none;
+  background: none;
+  display: block;
+  width: 100%;
+  margin-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
 .btn-login {
@@ -118,7 +118,7 @@ form.sign-in-form {
 }
 
 .cont:before {
-  content: "";
+  content: '';
   position: absolute;
   height: 2000px;
   width: 2000px;
@@ -161,7 +161,7 @@ form.sign-in-form {
   font-weight: 650;
   line-height: 1;
   font-size: 1.75rem;
-  color: #FF9271;
+  color: #ff9271;
 }
 
 .panel p {
@@ -337,15 +337,16 @@ form.sign-in-form {
 /*---------------end-login------------------------*/
 
 /*---------user-room---------------*/
-.img-wrap, .content-wrap{
+.img-wrap,
+.content-wrap {
   margin: 0 20px 0 20px;
 }
 
-img.user-room{
+img.user-room {
   border-radius: 5%;
 }
 
-.amenties{
+.amenties {
   background-color: #f7f7f7;
   border-radius: 5%;
   margin: 0;
@@ -355,9 +356,9 @@ img.user-room{
 }
 
 .booking-form {
-    background: #f7f7f7;
-    padding: 27px 40px 30px 40px;
-    border-radius: 4px;
+  background: #f7f7f7;
+  padding: 27px 40px 30px 40px;
+  border-radius: 4px;
 }
 
 .btn-book {
@@ -376,7 +377,7 @@ img.user-room{
   background-color: #ffba5a;
 }
 
-.not-avail{
+.not-avail {
   border: none;
   outline: none;
   width: 150px;
@@ -388,144 +389,145 @@ img.user-room{
   text-align: center;
 }
 
-.not-avail p{
-  margin-top: 0.7rem!important;
+.not-avail p {
+  margin-top: 0.7rem !important;
 }
 
-.select-option .opts, select.opts{
-    border-radius: 2px;
-    border: 1px solid #ebebeb;
-    height: 39px;
-    line-height: 50px;
-    padding-left: 10px;
-    width: 100%;
-    float: none;
+.select-option .opts,
+select.opts {
+  border-radius: 2px;
+  border: 1px solid #ebebeb;
+  height: 39px;
+  line-height: 50px;
+  padding-left: 10px;
+  width: 100%;
+  float: none;
 }
 
 /*---------reviews---------------*/
 
-.room-price{
-   color:#FF9271;
+.room-price {
+  color: #ff9271;
 }
 
-#testimonials{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   width:100%;
+#testimonials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
-.testimonial-box-container{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-wrap: wrap;
-   width:100%;
+.testimonial-box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
-.testimonial-box{
-   width:500px;
-   box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
-   background-color: #ffffff;
-   padding: 20px;
-   margin: 15px;
-   cursor: pointer;
+.testimonial-box {
+  width: 500px;
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 15px;
+  cursor: pointer;
 }
-.profile-img{
-   width:50px;
-   height: 50px;
-   border-radius: 50%;
-   overflow: hidden;
-   margin-right: 10px;
+.profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
 }
-.profile-img img{
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
-   object-position: center;
+.profile-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
-.profile{
-   display: flex;
-   align-items: center;
+.profile {
+  display: flex;
+  align-items: center;
 }
-.name-user{
-   display: flex;
-   flex-direction: column;
+.name-user {
+  display: flex;
+  flex-direction: column;
 }
-.name-user strong{
-   color: #3d3d3d;
-   font-size: 1.1rem;
-   letter-spacing: 0.5px;
+.name-user strong {
+  color: #3d3d3d;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
 }
-.name-user span{
-   color: #979797;
-   font-size: 0.8rem;
+.name-user span {
+  color: #979797;
+  font-size: 0.8rem;
 }
-.reviews{
-   color: #f9d71c;
+.reviews {
+  color: #f9d71c;
 }
-.box-top{
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   margin-bottom: 20px;
+.box-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
-.client-comment p{
-   font-size: 0.9rem;
-   color: #4b4b4b;
+.client-comment p {
+  font-size: 0.9rem;
+  color: #4b4b4b;
 }
-.testimonial-box:hover{
-   transform: translateY(-10px);
-   transition: all ease 0.3s;
-}
-
-@media(max-width:1060px){
-   .testimonial-box{
-       width:45%;
-       padding: 10px;
-   }
-}
-@media(max-width:790px){
-   .testimonial-box{
-       width:100%;
-   }
-   .testimonial-heading h1{
-       font-size: 1.4rem;
-   }
-}
-@media(max-width:340px){
-   .box-top{
-       flex-wrap: wrap;
-       margin-bottom: 10px;
-   }
-   .reviews{
-       margin-top: 10px;
-   }
-}
-::selection{
-   color: #ffffff;
-   background-color: #252525;
+.testimonial-box:hover {
+  transform: translateY(-10px);
+  transition: all ease 0.3s;
 }
 
-.give-fb{
+@media (max-width: 1060px) {
+  .testimonial-box {
+    width: 45%;
+    padding: 10px;
+  }
+}
+@media (max-width: 790px) {
+  .testimonial-box {
+    width: 100%;
+  }
+  .testimonial-heading h1 {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 340px) {
+  .box-top {
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .reviews {
+    margin-top: 10px;
+  }
+}
+::selection {
+  color: #ffffff;
+  background-color: #252525;
+}
+
+.give-fb {
   width: 85%;
   margin: auto;
   padding: 10px;
 }
 
 .comment-field {
-    width: 100%;
-    background-color: #ffffff;
-    margin: 10px 0;
-    height: 181px;
-    border-radius: 19px;
-    display: grid;
-    grid-template-columns: 15% 85%;
-    padding: 0 0.4rem;
-    position: relative;
-    border: 1px solid black;
+  width: 100%;
+  background-color: #ffffff;
+  margin: 10px 0;
+  height: 181px;
+  border-radius: 19px;
+  display: grid;
+  grid-template-columns: 15% 85%;
+  padding: 0 0.4rem;
+  position: relative;
+  border: 1px solid black;
 }
-.detail{
+.detail {
   justify-content: space-between;
   display: flex;
   justify-content: space-between;
@@ -533,35 +535,39 @@ img.user-room{
   margin-bottom: 20px;
 }
 
-.review-section h3{
-  width:85%;
+.review-section h3 {
+  width: 85%;
   text-align: center;
 }
 
 /*---------end-reviews---------------*/
 
 .site-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    padding: 15px 0;
-    z-index: 2;
-    -webkit-transition: .3s all ease-in-out;
-    -o-transition: .3s all ease-in-out;
-    transition: .3s all ease-in-out;
-    background-color: black;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 15px 0;
+  z-index: 2;
+  -webkit-transition: 0.3s all ease-in-out;
+  -o-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+  background-color: black;
 }
 
 .site-logo {
-  padding-left: 40px; }
+  padding-left: 40px;
+}
+.site-logo a {
+  font-size: 20px;
+  color: white;
+  font-weight: bold;
+  line-height: 1;
+  font-family: 'Playfair Display', times, serif;
+}
+@media (max-width: 991.98px) {
   .site-logo a {
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    line-height: 1;
-    font-family: "Playfair Display", times, serif; }
-    @media (max-width: 991.98px) {
-      .site-logo a {
-        font-size: 15px; } }
+    font-size: 15px;
+  }
+}
 
 /*---------end-header---------------*/
