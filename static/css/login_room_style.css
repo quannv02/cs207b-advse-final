@@ -409,6 +409,10 @@ select.opts {
   color: #ca316e;
 }
 
+.site-menu-toggle {
+    top: 13px;
+    width: 24px;
+  }
 #testimonials {
   display: flex;
   justify-content: center;
