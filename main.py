@@ -25,8 +25,7 @@ def index():
                 rooms = get_all_rooms()
                 return render_template('staff.html',rooms=rooms)
 
-            rooms = get_all_rooms()
-            return render_template('user.html', rooms=rooms)
+            return redirect(url_for('user_route.user'))
 
 
 

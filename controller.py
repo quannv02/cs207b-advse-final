@@ -51,10 +51,11 @@ def delete_room(room_id):
     session.close()
     return room
 
-# TODO: not used
-def get_available_rooms(start_date, end_date):
+def get_available_rooms(start_date, end_date, number_adults, number_children, price):
+    
+    people = number_adults + int(number_children/2)
     session = DBSession()
-    rooms = session.query(Room).filter_by(available=1).all()
+    rooms = session.query(Room).filter_by(available=1, capacity=people).all()
     for room in rooms:
         reservations = session.query(Reservation).filter_by(room_id=room.id).all()
         for reservation in reservations:
@@ -66,6 +67,11 @@ def get_available_rooms(start_date, end_date):
                 rooms.remove(room)
             elif reservation.start_date >= start_date and reservation.end_date <= end_date:
                 rooms.remove(room)
+        print(room.price, price)
+        if room.price > price:
+            print("removed")
+            rooms.remove(room)
+
     session.close()
     return rooms
 

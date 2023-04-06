@@ -1,10 +1,11 @@
 from controller import *
 from flask import jsonify, render_template, request, redirect, url_for, session, Blueprint
 from app import app
+from datetime import datetime, timedelta
 
 user_route = Blueprint('user_route', __name__)
 
-@user_route.route('/user', methods=['GET'])
+@user_route.route('/user', methods=['GET', 'POST'])
 def user():
     with app.app_context():
         if not session.get('logged_in'):
@@ -13,7 +14,20 @@ def user():
             user_id = session['id']
             message = request.args.get('message')
             error = request.args.get('error')
-            return render_template('user.html',  message=message, error=error)
+            rooms = None
+
+            if request.method == 'POST':
+                print(request.form)
+                check_in = datetime.strptime(request.form['check_in'],"%Y-%m-%d") if 'check_in' in request.form and request.form['check_in'] != "" else datetime.now()
+                check_out = datetime.strptime(request.form['check_out'],"%Y-%m-%d") if 'check_in' in request.form and request.form['check_in'] != "" else datetime.now() + timedelta(days=1)
+                number_adults = request.form['number_adults'] if 'number_adults' in request.form else 1
+                number_children = request.form['number_children'] if 'number_children' in request.form else 0
+                price = request.form['price'] if 'price' in request.form else 1000000
+                rooms = get_available_rooms(check_in, check_out, int(number_adults), int(number_children), int(price))
+                # rooms = get_available_rooms(check_in, check_out)
+                
+            # rooms = get_all_rooms()
+            return render_template('user.html',rooms=rooms,  message=message, error=error)
 
 
 @user_route.route('/room/<int:room_id>', methods=['GET'])
