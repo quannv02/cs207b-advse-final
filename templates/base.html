@@ -30,12 +30,10 @@
 </head>
 <body>
   {% if session.get('logged_in') %}
-  <!-- <h1>Welcome {{session.get('friendly_name')}}</h1> -->
-  <!-- <a href="/logout">Logout</a> -->
     {% block header %}  {% endblock %}
     {% block body %}
-    <h1>Welcome {{session.get('friendly_name')}}</h1>
-    <a href="/logout">Logout</a>
+      <h1>Welcome {{session.get('friendly_name')}}</h1>
+      <a href="/logout">Logout</a>
     {% endblock %}
     {% block footer %}  {% endblock %}
   {% endif %}
