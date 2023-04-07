@@ -68,7 +68,7 @@ def get_available_rooms(start_date, end_date, number_adults, number_children, pr
             elif reservation.start_date >= start_date and reservation.end_date <= end_date:
                 rooms.remove(room)
         # print(room.price, price)
-        if room.price > price or room.capacity < people:
+        if int(room.price) > int(price) or int(room.capacity) < int(people):
             # print("removed")
             rooms.remove(room)
 
